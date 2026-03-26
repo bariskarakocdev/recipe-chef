@@ -7,9 +7,9 @@ DataChefs projesinde sorumluluklar, uzmanlık alanlarına ve platform hedeflerin
 | Ekip Üyesi | Rol | Temel Sorumluluklar |
 | :--- | :--- | :--- |
 | **Barış Karakoç** | **Web & Frontend Developer** | Projenin tüm web arayüzü (React), bileşen mimarisi ve sistem entegrasyonu. |
-| **Ekip Üyesi 2** | **Mobile UI/UX Designer** | Mobil uygulamanın görsel tasarımı, kullanıcı deneyimi (UX) ve prototipleme süreçleri. |
-| **Ekip Üyesi 3** | **AI & Machine Learning Engineer** | Görüntü işleme modelleri (malzeme tanıma) ve interaktif Chatbot algoritmaları. |
-| **Ekip Üyesi 4** | **Mobile Developer** | Mobil uygulama (iOS/Android) geliştirme, mobil API entegrasyonu ve uygulama yayını. |
+| **Selim Anafıev** | **Mobile UI/UX Designer** | Mobil uygulamanın görsel tasarımı, kullanıcı deneyimi (UX) ve prototipleme süreçleri. |
+| **Muhammed Kadir Bük** | **AI & Machine Learning Engineer** | Görüntü işleme modelleri (malzeme tanıma) ve interaktif Chatbot algoritmaları. |
+| **Mesut Taşbaş** | **Mobile Developer** | Mobil uygulama (iOS/Android) geliştirme, mobil API entegrasyonu ve uygulama yayını. |
 
 ---
 
