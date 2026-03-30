@@ -28,5 +28,5 @@ RecipeChef (DataChefs), bilgisayarlı görü (computer vision) kullanarak yemekl
 ## 🛠️ Teknik Detaylar (Tech Stack)
 * **Frontend:** React.js, Tailwind CSS
 * **Backend:** Node.js, Express.js
-* **Database:** MongoDB
+* **Database:** PostgreSQL / Firebase
 * **AI/ML:** Python, OpenCV / TensorFlow
