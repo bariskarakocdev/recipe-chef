@@ -9,7 +9,7 @@ DataChefs projesinde sorumluluklar, uzmanlık alanlarına ve platform hedeflerin
 | **Barış Karakoç** | **Web & Frontend Developer** | Projenin tüm web arayüzü (React), bileşen mimarisi ve sistem entegrasyonu. |
 | **Selim Anafıev** | **Mobile UI/UX Designer** | Mobil uygulamanın görsel tasarımı, kullanıcı deneyimi (UX) ve prototipleme süreçleri. |
 | **Muhammed Kadir Bük** | **AI & Machine Learning Engineer** | Görüntü işleme modelleri (malzeme tanıma) ve interaktif Chatbot algoritmaları. |
-| **Mesut Taşbaş** | **Mobile Developer** | Mobil uygulama (iOS/Android) geliştirme, mobil API entegrasyonu ve uygulama yayını. |
+
 
 ---
 
@@ -18,13 +18,15 @@ DataChefs projesinde sorumluluklar, uzmanlık alanlarına ve platform hedeflerin
 - **Mobil Kanalı:** Tasarım ve geliştirme olarak iki ayrı uzmanlık alanına bölünmüştür.
 - **Veritabanı & Backend:** Ekip üyeleri, kendi sorumlu oldukları platformların (Web/Mobil) backend ihtiyaçlarını ortaklaşa veya AI/Mobile geliştiriciler desteğiyle yürütecektir.
 
-- ## 🛠️ İş Birliği ve Kod Yönetimi (Git Workflow)
 
-Proje güvenliğini ve kod kalitesini korumak için aşağıdaki kurallar uygulanacaktır:
+## 📌 Git Çalışma Akışı (Workflow) Kuralları
 
-- **Main Branch Koruması:** `main` dalına doğrudan kod gönderilmeyecektir (Direct push yasaktır).
-- **Özellik Geliştirme:** Her yeni özellik veya hata düzeltme için ayrı bir dal (`feature/ozellik-adi` veya `fix/hata-adi`) açılacaktır.
-- **Pull Request (PR) Süreci:** - Geliştirme bitince `main` dalına yönelik bir Pull Request açılacaktır.
-    - Kodlar, en az bir ekip üyesi tarafından incelenip onaylandıktan sonra `merge` edilecektir.
+Ekip içi iletişimi güçlü tutmak ve süreci basitleştirmek adına projemizde **alt dal (branch) açılmayacaktır**. Tüm geliştirmeler doğrudan `main` (ana) dal üzerinden yürütülecektir.
+
+**Ekip Üyelerinin Uyması Gereken Kurallar:**
+1. **Geliştirmeye Başlamadan Önce:** Koda başlamadan önce mutlaka en güncel hali bilgisayarınıza çekin:
+   `git pull origin main`
+2. **Ortak İnceleme (Review):** Yazılan kodlar doğrudan gönderilmeden önce, ekip üyeleriyle birlikte (ekran paylaşımı veya yan yana) kontrol edilmelidir.
+3. **Doğrudan Gönderim:** Kodun hatasız çalıştığı onaylandıktan sonra, commit işlemi yapılıp doğrudan `main` dalına pushlanacaktır.
 - **Commit Standartları:** Her commit, ne yapıldığını açıkça belirten (örneğin: `feat:`, `fix:`, `docs:`) önekler içermelidir.
 - **Senkronizasyon:** Her çalışma öncesi `git pull origin main` yapılarak güncel kod üzerinden çalışılacaktır.
