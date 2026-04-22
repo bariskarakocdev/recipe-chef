@@ -10,7 +10,7 @@ RecipeChef, mutfaktaki karar verme sürecini hızlandırmak ve sağlıklı besle
 - **🖼️ AI Vision (Kalori Tahmini):** Yemek fotoğraflarını analiz ederek porsiyon ve kalori hesabı yapar.
 - **🤖 Akıllı Tarif Asistanı:** "Buzdolabımda ne var?" sorusuna mevcut malzemelerle en uygun tarifi verir.
 - **📱 Multi-Platform:** Web ve Mobil üzerinden senkronize çalışma desteği.
-- **📊 Besin Değeri Takibi:** Yemeklern protein, karbonhidrat ve yağ dengesini grafiklerle sunar.
+- **📊 Besin Değeri Takibi:** Yemeklerin protein, karbonhidrat ve yağ dengesini grafiklerle sunar.
 
 ## 🛠️ Teknik Altyapı (Tech Stack)
 | Alan | Teknoloji |
@@ -24,7 +24,6 @@ RecipeChef, mutfaktaki karar verme sürecini hızlandırmak ve sağlıklı besle
 ## 👥 DataChefs Ekibi
 - **Barış Karakoç** - Web Developer [@bariskarakocdev](https://github.com/bariskarakocdev)
 - **[Muhammed Kadir Bük]** - AI Developer [@kadiri6506](https://github.com/kadiri6506)
-- **[Mesut Taşbaş]** - Mobile Developer [@mesuttasbas](https://github.com/mesuttasbas)
 - **[Selim Anafıev]** - Mobile Developer [@caawq](https://github.com/caawq)
 
 
