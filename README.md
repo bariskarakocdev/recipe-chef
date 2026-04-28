@@ -42,6 +42,9 @@ RecipeChef, mutfaktaki karar verme sürecini hızlandırmak ve sağlıklı besle
 Proje süreçlerimizi **GitHub Projects** üzerinden **Kanban** metoduyla şeffaf bir şekilde yönetiyoruz.
 Pano Linki: [🚀 DataChefs Kanban Board](https://github.com/users/bariskarakocdev/projects/2)
 
+## 🚀 Canlı Demo
+Uygulamayı test etmek için buraya tıklayın: [Yemek Tarifi Uygulaması Canlı Link](https://recipechef21.vercel.app/)
+
 📌 Kurulum Rehberi (Geliştiriciler İçin)
 
 ## İlk kurulum ve çalıştırma için:
