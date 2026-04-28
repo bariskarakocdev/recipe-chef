@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '../assets/logo2.png'
 import '../css/Header.css'
 import Avatar from '@mui/material/Avatar';
@@ -10,11 +10,16 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { IoMdClose } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom'
+
 function Header() {
 
     const navigate = useNavigate();
     const [isOpenBottomMenu, setIsOpenBottomMenu] = useState(null);
     const [isBarsOpen, setIsBarsOpen] = useState(false);
+    const changeNavbar = () => {
+        setIsBarsOpen(!isBarsOpen);
+    }
+
     const handleOpenBottomMenu = (event) => {
         setIsOpenBottomMenu(event.currentTarget);
     }
@@ -29,9 +34,8 @@ function Header() {
                 <img src={logo} alt="logo" className="logo" />
                 <div className="title">Recipe Chef</div>
             </div>
-            {
-                isBarsOpen && (
-                    <nav className='navbar'>
+            
+                    <nav className={`navbar ${isBarsOpen ? 'open' : ''}`}>
                         <ul>
                             <li>
                                 <Link to="/" onClick={()=>setIsBarsOpen(false)}>Anasayfa</Link>
@@ -46,7 +50,7 @@ function Header() {
                                 <Link to="/favorilerim" onClick={()=>setIsBarsOpen(false)}>Favorilerim</Link>
                             </li>
                         </ul>
-                    </nav>)}
+                    </nav>
             <div className="right">
 
                 <Avatar sx={{ width: 40, height: 40, fontSize: 20, bgcolor: deepOrange[500] }}>B</Avatar>
@@ -78,13 +82,16 @@ function Header() {
                         },
                     }}
                 >
-                    <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={handleClose}>Çıkış Yap</MenuItem>
+                    <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={()=>{handleClose();navigate("/giris-yap") }}>Çıkış Yap</MenuItem>
                   
                     <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={()=>{handleClose();navigate("/bilgilerim") }}>Bilgilerim</MenuItem>
                 </Menu>
-                <span>{!isBarsOpen ? <FaBars className="bars" size={20} onClick={() => setIsBarsOpen(true)} /> :
-                    <IoMdClose className="bars" size={25} onClick={() => setIsBarsOpen(false)} />
-                }</span>
+                <span className="bars-toggle">
+                    {!isBarsOpen ? 
+                        <FaBars className="bars" size={22} onClick={changeNavbar} /> :
+                        <IoMdClose className="bars" size={22} onClick={changeNavbar} />
+                    }
+                </span>
 
 
             </div>

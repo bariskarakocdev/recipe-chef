@@ -1,0 +1,50 @@
+.auth{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width:100%;
+    gap:20px;
+}
+.auth-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: boldauth-;
+    font-size: 24px;
+}
+.inputs-div{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}
+.inputs-div input{
+    border-radius: 5px;
+    border:1px solid lightgray;
+    padding:8px;
+    width: 300px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap:5px
+}
+.buttons button{
+    padding:5px 10px;
+    border:none;
+    outline: none;
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.register-button{
+    background-color: green;
+}
+.login-button{   
+    background-color: rgb(68, 107, 189);
+}
+.google-button{
+    background-color: rgb(128, 25, 41);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
