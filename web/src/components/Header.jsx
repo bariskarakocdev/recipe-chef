@@ -14,7 +14,7 @@ function Header() {
 
     const navigate = useNavigate();
     const [isOpenBottomMenu, setIsOpenBottomMenu] = useState(null);
-    const [isBarsOpen, setIsBarsOpen] = useState(true);
+    const [isBarsOpen, setIsBarsOpen] = useState(false);
     const handleOpenBottomMenu = (event) => {
         setIsOpenBottomMenu(event.currentTarget);
     }
@@ -34,16 +34,16 @@ function Header() {
                     <nav className='navbar'>
                         <ul>
                             <li>
-                                <Link to="/">Anasayfa</Link>
+                                <Link to="/" onClick={()=>setIsBarsOpen(false)}>Anasayfa</Link>
                             </li>
                             <li>
-                                <Link to="/tarif-ara">Tarif Ara</Link>
+                                <Link to="/tarif-ara" onClick={()=>setIsBarsOpen(false)}>Tarif Ara</Link>
                             </li>
                             <li>
-                                <Link to="/tarif-sor">Tarif Sor</Link>
+                                <Link to="/tarif-sor" onClick={()=>setIsBarsOpen(false)}>Tarif Sor</Link>
                             </li>
                             <li>
-                                <Link to="/favorilerim">Favorilerim</Link>
+                                <Link to="/favorilerim" onClick={()=>setIsBarsOpen(false)}>Favorilerim</Link>
                             </li>
                         </ul>
                     </nav>)}

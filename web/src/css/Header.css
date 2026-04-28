@@ -100,14 +100,14 @@
     .navbar {
         flex-direction: column;
         gap: 1.2rem;
-        width: 32rem;
-        height: 40rem;
+        width: 25rem;
+        height: 25rem;
         background-color: rgba(0, 0, 0, 0.5);
         color: white;
         position: absolute;
         right: 0;
         top: 8rem;
-        padding: 1rem 0;
+        padding: 3rem;
 
     }
     .bars{
