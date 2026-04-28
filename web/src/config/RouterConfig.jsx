@@ -6,6 +6,7 @@ import AskRecipe from '../pages/AskRecipe'
 import Information from '../pages/Information'
 import Favorites from '../pages/Favorites'
 import Auth from '../pages/Auth'
+import Recipe from '../pages/Recipe'
 
 
 
@@ -20,6 +21,8 @@ function RouterConfig() {
             <Route path="/favorilerim" element={<Favorites />} />
             <Route path="/bilgilerim" element={<Information />} />
             <Route path="/giris-yap" element={<Auth />} />
+            <Route path="/tarif/:id" element={<Recipe />} />
+
         </Routes>
     
     </>

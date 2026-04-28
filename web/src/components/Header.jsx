@@ -9,8 +9,10 @@ import { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { IoMdClose } from "react-icons/io";
+import { Link, useNavigate } from 'react-router-dom'
 function Header() {
 
+    const navigate = useNavigate();
     const [isOpenBottomMenu, setIsOpenBottomMenu] = useState(null);
     const [isBarsOpen, setIsBarsOpen] = useState(true);
     const handleOpenBottomMenu = (event) => {
@@ -30,21 +32,21 @@ function Header() {
             {
                 isBarsOpen && (
                     <nav className='navbar'>
-                <ul>
-                    <li>
-                        <a className="active">Anasayfa</a>
-                    </li>
-                    <li>
-                        <a href="#">Tarif Ara</a>
-                    </li>
-                    <li>
-                        <a href="#">Tarif Sor</a>
-                    </li>
-                    <li>
-                        <a href="#">Favorilerim</a>
-                    </li>
-                </ul>
-            </nav>)}
+                        <ul>
+                            <li>
+                                <Link to="/">Anasayfa</Link>
+                            </li>
+                            <li>
+                                <Link to="/tarif-ara">Tarif Ara</Link>
+                            </li>
+                            <li>
+                                <Link to="/tarif-sor">Tarif Sor</Link>
+                            </li>
+                            <li>
+                                <Link to="/favorilerim">Favorilerim</Link>
+                            </li>
+                        </ul>
+                    </nav>)}
             <div className="right">
 
                 <Avatar sx={{ width: 40, height: 40, fontSize: 20, bgcolor: deepOrange[500] }}>B</Avatar>
@@ -77,11 +79,12 @@ function Header() {
                     }}
                 >
                     <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={handleClose}>Çıkış Yap</MenuItem>
-                    <MenuItem sx={{ fontSize: 14, fontWeight: "500"}} onClick={handleClose}>Bilgilerim</MenuItem>
+                  
+                    <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={()=>{handleClose();navigate("/bilgilerim") }}>Bilgilerim</MenuItem>
                 </Menu>
-                <span>{!isBarsOpen ? <FaBars className="bars" size={20}  onClick={()=> setIsBarsOpen(true)}/>:
-                <IoMdClose className="bars" size={25} onClick={()=> setIsBarsOpen(false)}/>
-            }</span>
+                <span>{!isBarsOpen ? <FaBars className="bars" size={20} onClick={() => setIsBarsOpen(true)} /> :
+                    <IoMdClose className="bars" size={25} onClick={() => setIsBarsOpen(false)} />
+                }</span>
 
 
             </div>
