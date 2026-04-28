@@ -1,0 +1,134 @@
+.header {
+    background-color: var(--header-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8rem;
+    width: 100%;
+    padding: 2rem 4rem;
+    position: relative;
+}
+
+.header .left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.title {
+    color: var(--title-color);
+    font-size: 3rem;
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+.navbar ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--txt-color);
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.active {
+    color: var(--active-color)
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: .1rem;
+    list-style: none;
+    position: relative;
+}
+
+.bottom-menu {
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    width: 18rem;
+    height: auto;
+    background-color: lightgray;
+    color: red;
+    list-style: none;
+    padding: 1rem 2rem;
+    z-index: 999;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+.avatar {
+    width: 4rem;
+    height: 4rem;
+    background-color: gray;
+    border-radius: 50%;
+
+}
+.arrow {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.bars {
+    display: none;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+@media (max-width:980px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1.2rem;
+        width: 32rem;
+        height: 40rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        position: absolute;
+        right: 0;
+        top: 8rem;
+        padding: 1rem 0;
+
+    }
+    .bars{
+        display: inline-block;
+        position: fixed;
+       right:2rem;
+       top:3rem;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+
+    }
+}
+
+@media (max-width:990px) {
+    .bottom-menu {
+        display: none;
+
+    }
+}
+
