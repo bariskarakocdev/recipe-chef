@@ -23,7 +23,7 @@ RecipeChef, mutfaktaki karar verme sürecini hızlandırmak ve sağlıklı besle
 
 ## 👥 DataChefs Ekibi
 - **Barış Karakoç** - Web Developer [@bariskarakocdev](https://github.com/bariskarakocdev)
-- **[Muhammed Kadir Bük]** - AI Developer [@kadiri6506](https://github.com/kadiri6506)
+- **[Muhammed Kadir Bük]** - AI Developer [@kadiri6506](https://github.com/muhammedkadirbuk)
 - **[Selim Anafıev]** - Mobile Developer [@caawq](https://github.com/caawq)
 
 
