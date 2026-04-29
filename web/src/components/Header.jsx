@@ -32,7 +32,7 @@ function Header() {
         <div className='header'>
             <div className="left">
                 <img src={logo} alt="logo" className="logo" />
-                <div className="title">Recipe Chef</div>
+                <div className="title">RecipeChef</div>
             </div>
             
                     <nav className={`navbar ${isBarsOpen ? 'open' : ''}`}>
@@ -53,7 +53,7 @@ function Header() {
                     </nav>
             <div className="right">
 
-                <Avatar sx={{ width: 40, height: 40, fontSize: 20, bgcolor: deepOrange[500] }}>B</Avatar>
+                <Avatar className="avatar" sx={{ width: 40, height: 40, fontSize: 20, bgcolor: deepOrange[500] }}>B</Avatar>
                 <MdArrowDropDown className="arrow" size={30} id="basic-button"
                     aria-controls={isOpenBottomMenu ? 'bottom-menu' : undefined}
                     aria-haspopup="true"
