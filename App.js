@@ -1,77 +1,77 @@
-import React from 'react';
-import { StyleSheet, View, SafeAreaView, StatusBar, ScrollView, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, SafeAreaView, StatusBar, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// Fonts - importing Montserrat family
-import { 
-  useFonts, 
-  Montserrat_400Regular, 
-  Montserrat_600SemiBold, 
-  Montserrat_700Bold 
+// Fonts
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold
 } from '@expo-google-fonts/montserrat';
 
 // Constants
 import { COLORS } from './src/constants/colors';
 
 // Components
-import SearchBar from './src/components/SearchBar';
-import CategoryItem from './src/components/CategoryItem';
-import GlassCard from './src/components/GlassCard';
 import TabBar from './src/components/TabBar';
 
+// Screens — each screen lives in its own file
+import HomeScreen from './screens/HomeScreen';
+import SearchScreen from './screens/SearchScreen';
+import FavouritesScreen from './screens/FavouritesScreen';
+import ProfileScreen from './screens/ProfileScreen';
+
+// ─────────────────────────────────────────────
+// App — root component
+// Responsible for:
+//   1. Loading fonts
+//   2. Tracking which tab is active
+//   3. Showing the right screen
+// ─────────────────────────────────────────────
 export default function App() {
-  // Load fonts and handle potential errors
+
   const [fontsLoaded, fontError] = useFonts({
     'Montserrat-Regular': Montserrat_400Regular,
     'Montserrat-SemiBold': Montserrat_600SemiBold,
     'Montserrat-Bold': Montserrat_700Bold,
   });
 
-  // If fonts are still loading and there is no error, show a fallback background
+  // activeTab — which screen is currently visible
+  const [activeTab, setActiveTab] = useState('Home');
+
+  // Show blank screen while fonts are loading
   if (!fontsLoaded && !fontError) {
     return <View style={{ flex: 1, backgroundColor: COLORS.backgroundTop }} />;
   }
 
   return (
     <View style={styles.container}>
-      {/* Dark icons for the status bar (time, battery) */}
       <StatusBar barStyle="dark-content" />
-      
-      {/* Main Background Gradient */}
-      <LinearGradient 
-        colors={[COLORS.backgroundTop, COLORS.backgroundBottom]} 
+
+      <LinearGradient
+        colors={[COLORS.backgroundTop, COLORS.backgroundBottom]}
         style={styles.gradient}
       >
         <SafeAreaView style={styles.safeArea}>
-          {/* Scrollable area for the main content */}
-          <ScrollView 
-            showsVerticalScrollIndicator={false} 
-            contentContainerStyle={styles.scrollContent}
-          >
-            {/* Search Bar Component */}
-            <SearchBar />
 
-            {/* Categories Horizontal Row */}
-            <View style={styles.categoriesContainer}>
-              <CategoryItem label="Food" emoji="🥦" />
-              <CategoryItem label="Food" emoji="🥩" />
-              <CategoryItem label="Food" emoji="🍕" />
-              <CategoryItem label="Food" emoji="🥤" />
+          {activeTab === 'Home'       && <HomeScreen />}
+          {activeTab === 'Search'     && <SearchScreen />}
+          {activeTab === 'Favourites' && <FavouritesScreen />}
+          {activeTab === 'Profile'    && <ProfileScreen />}
+
+          {/* ChatBOT screen — not built yet */}
+          {activeTab === 'ChatBOT' && (
+            <View style={styles.placeholder}>
+              <Text style={styles.placeholderText}>ChatBOT — coming soon</Text>
             </View>
+          )}
 
-            {/* Main Content: Glassmorphism Cards */}
-            {/* Top Card - with icon */}
-            <GlassCard height={220} showIcon={true} />
-            
-            {/* Bottom Card - empty/no icon */}
-            <GlassCard height={350} showIcon={false} />
-
-          </ScrollView>
         </SafeAreaView>
 
-        {/* Floating Bottom Navigation Bar */}
-        <TabBar />
-        
+        {/* TabBar — always visible, controls activeTab */}
+        <TabBar activeTab={activeTab} onTabPress={setActiveTab} />
+
       </LinearGradient>
     </View>
   );
@@ -87,16 +87,14 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    // paddingBottom is crucial so the content isn't hidden by the TabBar
-    paddingBottom: 140, 
+  placeholder: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  categoriesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 25,
-    marginBottom: 10,
+  placeholderText: {
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 18,
+    color: COLORS.accent,
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { COLORS } from './constants/colors';
+import { COLORS } from '../constants/colors';
 
 const CategoryItem = ({ label, emoji }) => {
   return (
