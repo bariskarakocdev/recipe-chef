@@ -1,9 +1,6 @@
-feat: Favorilere ekleme özelliği ve Firebase entegrasyonu tamamlandı
+feat: Sayfa yenilendiğinde oturumun açık kalması (Auth Persistence) eklendi
 
-- Redux yapısı AppSlice, AuthSlice ve FavoriteSlice olarak modüllere ayrıldı.
-- firebase.js içerisine Firestore veritabanı (db) bağlantısı eklendi.
-- FavoriteSlice içerisine Firebase ile asenkron haberleşen fetchFavorites ve toggleFavorite Thunk'ları yazıldı.
-- Card.jsx bileşenine kalp ikonu eklenerek Redux ve Firebase üzerinden favorilere ekleme/çıkarma işlemi bağlandı.
-- Kullanıcı giriş yaptığında (Auth.jsx) veritabanından favorilerin çekilmesi sağlandı.
-- Çıkış yapıldığında (Header.jsx) hafızadaki favorilerin temizlenmesi (clearFavorites) sağlandı.
-- Favori yemeklerin listelendiği Favorites.jsx sayfası oluşturuldu ve yönlendirmesi yapıldı.
+- App.jsx içerisine Firebase onAuthStateChanged dinleyicisi eklendi.
+- Sayfa yenilendiğinde (F5) LocalStorage'daki oturum kontrol edilip Redux state'i otomatik olarak güncellendi.
+- Oturumu geri yüklenen kullanıcının favori yemekleri veritabanından tekrar çekildi.
+- Redux non-serializable value uyarılarını engellemek için Firebase User objesi filtrelenerek sadece gerekli alanlar (uid, email, displayName, metadata) state'e kaydedildi.
