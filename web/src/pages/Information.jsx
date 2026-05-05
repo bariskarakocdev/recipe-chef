@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 function Information() {
-  const user = useSelector((state)=> state.app.user)
+  const user = useSelector((state)=> state.auth.user)
   return (
     <div className='information'>
       <div>Ad : {user.displayName ? user.displayName : "null"}</div>

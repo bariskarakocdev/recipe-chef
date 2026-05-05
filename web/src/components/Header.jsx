@@ -14,14 +14,14 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLogin, setUser } from '../store/slices/AppSlice';
+import { setLogin, setUser } from '../store/slices/AuthSlice';
 
 
 function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isLogin = useSelector((state) => state.app.isLogin)
-    const user = useSelector((state) => state.app.user)
+    const isLogin = useSelector((state) => state.auth.isLogin)
+    const user = useSelector((state) => state.auth.user)
     const [isOpenBottomMenu, setIsOpenBottomMenu] = useState(null);
     const [isBarsOpen, setIsBarsOpen] = useState(false);
     const changeNavbar = () => {
@@ -43,11 +43,12 @@ function Header() {
                 navigate("/giris-yap");
             } else {
                 const response = await signOut(auth);
+                dispatch(setLogin(false));
+                dispatch(setUser(null));
                 toast.success("Başarıyla çıkış yapıldı.");
                 handleClose();
                 navigate("/giris-yap");
-                dispatch(setLogin(false));
-                dispatch(setUser(null));
+                
             }
 
 

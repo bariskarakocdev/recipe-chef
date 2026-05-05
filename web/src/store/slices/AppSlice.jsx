@@ -5,8 +5,6 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const initialState = {
     foods: [],
     loading: false,
-    isLogin:false,
-    user:null
 }
 
 // Async işlem burada tanımlanır — reducer içinde değil!
@@ -24,13 +22,7 @@ export const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        setLogin:(state,action)=>{
-            state.isLogin= action.payload;
-        },
-        setUser: (state, action)=>{
-            state.user = action.payload;
-
-        }
+        
     },
     extraReducers: (builder) => {
         builder.addCase(getFoods.pending, (state) => {
@@ -46,5 +38,5 @@ export const appSlice = createSlice({
     },
 })
 
-export const { setLogin, setUser } = appSlice.actions
+export const {} = appSlice.actions
 export default appSlice.reducer

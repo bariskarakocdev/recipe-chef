@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthP
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import App from '../App';
-import { setLogin, setUser } from '../store/slices/AppSlice';
+import { setLogin, setUser } from '../store/slices/AuthSlice';
 
 
 
@@ -17,8 +17,8 @@ function Auth() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- const isLogin = useSelector((state) => state.app.isLogin)
- const user = useSelector((state) => state.app.user)
+ const isLogin = useSelector((state) => state.auth.isLogin)
+ const user = useSelector((state) => state.auth.user)
 
   const removeInput = ()=>{
     setEmail("");
