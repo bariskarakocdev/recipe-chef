@@ -13,6 +13,7 @@ import RecipeCard from '../components/Card';
 function SearchRecipe() {
   const [value, setValue] = useState(0);
   const recipes = useSelector((state) => state.app.foods);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

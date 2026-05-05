@@ -12,6 +12,7 @@ import { FaBookmark } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../store/slices/FavoriteSlice';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function RecipeCard(props) {
     // SearchRecipe.jsx'ten gönderilen prop yapısı: <RecipeCard props={recipe} />
@@ -19,6 +20,7 @@ function RecipeCard(props) {
     
     // Redux bağlantıları
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
     const favorites = useSelector((state) => state.favorite.favorites);
 
@@ -60,7 +62,7 @@ function RecipeCard(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Detayları Gör</Button>
+                    <Button size="small" onClick={() => navigate('/tarif/' + id)}>Detayları Gör</Button>
                     <Button size="small" color="error" onClick={handleToggleFavorite}>
                         {isFavorite ? 
                         <FaBookmark fontSize={20}/> : <CiBookmark  fontSize={20}/>  }

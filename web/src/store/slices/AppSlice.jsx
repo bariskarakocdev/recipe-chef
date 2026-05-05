@@ -5,6 +5,8 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const initialState = {
     foods: [],
     loading: false,
+    currentRecipe: null,
+    recipeLoading: false,
 }
 
 // Async işlem burada tanımlanır — reducer içinde değil!
@@ -15,6 +17,16 @@ export const getFoods = createAsyncThunk(
             `https://api.spoonacular.com/recipes/random?number=12&apiKey=${API_KEY}`
         )
         return response.data.recipes;
+    }
+)
+
+export const getRecipeDetails = createAsyncThunk(
+    'app/getRecipeDetails',
+    async (id) => {
+        const response = await axios.get(
+            `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+        );
+        return response.data;
     }
 )
 
@@ -34,6 +46,18 @@ export const appSlice = createSlice({
         })
         builder.addCase(getFoods.rejected, (state) => {
             state.loading = false;
+        })
+        
+        // Recipe Details
+        builder.addCase(getRecipeDetails.pending, (state) => {
+            state.recipeLoading = true;
+        })
+        builder.addCase(getRecipeDetails.fulfilled, (state, action) => {
+            state.currentRecipe = action.payload;
+            state.recipeLoading = false;
+        })
+        builder.addCase(getRecipeDetails.rejected, (state) => {
+            state.recipeLoading = false;
         })
     },
 })

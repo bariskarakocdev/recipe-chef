@@ -5,14 +5,19 @@ import RouterConfig from './config/RouterConfig';
 import { ToastContainer } from 'react-toastify';
 
 // Redux ve Firebase bağlantıları
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebase';
 import { setLogin, setUser } from './store/slices/AuthSlice';
 import { fetchFavorites } from './store/slices/FavoriteSlice';
+import Footer from './components/Footer';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function App() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.app.loading);
+  const recipeLoading = useSelector((state) => state.app.recipeLoading);
+
 
   useEffect(() => {
     // Firebase dinleyicisi: Sayfa yenilendiğinde kullanıcının oturumu varsa burası otomatik çalışır
@@ -38,14 +43,21 @@ function App() {
     return () => unsubscribe();
   }, [dispatch]);
 
+ 
   return (
     <>
       <ToastContainer/>
       <Header />
       <RouterConfig />
-      <div style={{ textAlign: 'center', padding: '2rem', position: 'fixed', bottom: 0, width: '100%' }}>
-        <p>RecipeChef © 2026 - Tüm hakları saklıdır</p>
-      </div>
+       
+       {/* Yükleme durumu varsa (sayfanın neresinde olursa olsun) ortada bir spinner göster */}
+       {(loading || recipeLoading) && (
+        <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 9999 }}>
+          <CircularProgress color='success' size={60} />
+        </div>
+       )}
+      
+      <Footer/>
     </>
   )
 }

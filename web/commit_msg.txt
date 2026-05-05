@@ -1,6 +1,0 @@
-feat: Sayfa yenilendiğinde oturumun açık kalması (Auth Persistence) eklendi
-
-- App.jsx içerisine Firebase onAuthStateChanged dinleyicisi eklendi.
-- Sayfa yenilendiğinde (F5) LocalStorage'daki oturum kontrol edilip Redux state'i otomatik olarak güncellendi.
-- Oturumu geri yüklenen kullanıcının favori yemekleri veritabanından tekrar çekildi.
-- Redux non-serializable value uyarılarını engellemek için Firebase User objesi filtrelenerek sadece gerekli alanlar (uid, email, displayName, metadata) state'e kaydedildi.
