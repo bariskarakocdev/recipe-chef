@@ -1,0 +1,9 @@
+feat: Favorilere ekleme özelliği ve Firebase entegrasyonu tamamlandı
+
+- Redux yapısı AppSlice, AuthSlice ve FavoriteSlice olarak modüllere ayrıldı.
+- firebase.js içerisine Firestore veritabanı (db) bağlantısı eklendi.
+- FavoriteSlice içerisine Firebase ile asenkron haberleşen fetchFavorites ve toggleFavorite Thunk'ları yazıldı.
+- Card.jsx bileşenine kalp ikonu eklenerek Redux ve Firebase üzerinden favorilere ekleme/çıkarma işlemi bağlandı.
+- Kullanıcı giriş yaptığında (Auth.jsx) veritabanından favorilerin çekilmesi sağlandı.
+- Çıkış yapıldığında (Header.jsx) hafızadaki favorilerin temizlenmesi (clearFavorites) sağlandı.
+- Favori yemeklerin listelendiği Favorites.jsx sayfası oluşturuldu ve yönlendirmesi yapıldı.

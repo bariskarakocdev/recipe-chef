@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import App from '../App';
 import { setLogin, setUser } from '../store/slices/AuthSlice';
-
+import { fetchFavorites } from '../store/slices/FavoriteSlice';
 
 
 function Auth() {
@@ -50,6 +50,7 @@ function Auth() {
       navigate("/");
       dispatch(setLogin(true));
       dispatch(setUser(user));
+      dispatch(fetchFavorites(user.uid));
     } catch (error) {
       toast.error(error.message);
       removeInput();
@@ -65,6 +66,7 @@ function Auth() {
       toast.success("Başarıyla Giriş Yapıldı");
       dispatch(setLogin(true));
       dispatch(setUser(user));
+      dispatch(fetchFavorites(user.uid));
 
       
     } catch (error) {

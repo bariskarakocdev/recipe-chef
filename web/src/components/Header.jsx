@@ -15,6 +15,7 @@ import { auth } from '../services/firebase'
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin, setUser } from '../store/slices/AuthSlice';
+import { clearFavorites } from '../store/slices/FavoriteSlice';
 
 
 function Header() {
@@ -45,6 +46,7 @@ function Header() {
                 const response = await signOut(auth);
                 dispatch(setLogin(false));
                 dispatch(setUser(null));
+                dispatch(clearFavorites()); // Çıkış yapıldığında favorileri de hafızadan sil
                 toast.success("Başarıyla çıkış yapıldı.");
                 handleClose();
                 navigate("/giris-yap");
