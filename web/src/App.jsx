@@ -29,8 +29,11 @@ function App() {
           uid: currentUser.uid,
           email: currentUser.email,
           displayName: currentUser.displayName,
-          metadata: currentUser.metadata // Bilgilerim sayfası için
-        })); // Sadece gereken verileri yollamak Redux uyarısını engeller
+          metadata: {
+            creationTime: currentUser.metadata.creationTime,
+            lastSignInTime: currentUser.metadata.lastSignInTime
+          } // Sadece gereken verileri yollamak Redux uyarısını engeller
+        })); 
         dispatch(fetchFavorites(currentUser.uid)); // Favorileri getir
       } else {
         // Oturum kapalıysa temizle

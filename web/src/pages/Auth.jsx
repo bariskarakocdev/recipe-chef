@@ -17,10 +17,10 @@ function Auth() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- const isLogin = useSelector((state) => state.auth.isLogin)
- const user = useSelector((state) => state.auth.user)
+  const isLogin = useSelector((state) => state.auth.isLogin)
+  const user = useSelector((state) => state.auth.user)
 
-  const removeInput = ()=>{
+  const removeInput = () => {
     setEmail("");
     setPassword("");
 
@@ -41,7 +41,7 @@ function Auth() {
 
 
   }
-  const signInWithEmail= async()=>{
+  const signInWithEmail = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       const user = response.user;
@@ -49,14 +49,22 @@ function Auth() {
       removeInput();
       navigate("/");
       dispatch(setLogin(true));
-      dispatch(setUser(user));
+      dispatch(setUser({
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        metadata: {
+          creationTime: user.metadata.creationTime,
+          lastSignInTime: user.metadata.lastSignInTime
+        }
+      }));
       dispatch(fetchFavorites(user.uid));
     } catch (error) {
       toast.error(error.message);
       removeInput();
     }
   }
-  const signInWithGoogle = async()=>{
+  const signInWithGoogle = async () => {
     try {
       const response = await signInWithPopup(auth, provider);
       const credential = GoogleAuthProvider.credentialFromResult(response);
@@ -65,10 +73,18 @@ function Auth() {
       navigate("/");
       toast.success("Başarıyla Giriş Yapıldı");
       dispatch(setLogin(true));
-      dispatch(setUser(user));
+      dispatch(setUser({
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        metadata: {
+          creationTime: user.metadata.creationTime,
+          lastSignInTime: user.metadata.lastSignInTime
+        }
+      }));
       dispatch(fetchFavorites(user.uid));
 
-      
+
     } catch (error) {
       toast.error(error.message)
     }

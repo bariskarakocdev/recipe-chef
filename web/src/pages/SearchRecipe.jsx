@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import SearchRecipeTabs from '../components/SearchRecipeTabs';
 import '../css/SearchRecipe.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,11 +40,13 @@ function SearchRecipe() {
           </Tabs>
         </Box>
         <SearchRecipeTabs value={value} index={0}>
-          <div className="recipes-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', marginTop: '2rem' }}>
+          <Grid container spacing={4} sx={{ mt: 2, px: { xs: 2, md: 4 } }}>
             {recipes && recipes.map((recipe) => (
-              <RecipeCard key={recipe.id} props={recipe} />
+              <Grid item xs={12} sm={6} md={4} lg={3} key={recipe.id} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <RecipeCard props={recipe} />
+              </Grid>
             ))}
-          </div>
+          </Grid>
         </SearchRecipeTabs>
         <SearchRecipeTabs value={value} index={1}>
           İçeriğe Göre İçerik

@@ -16,6 +16,7 @@ export const getFoods = createAsyncThunk(
         const response = await axios.get(
             `https://api.spoonacular.com/recipes/random?number=12&apiKey=${API_KEY}`
         )
+        console.log(response.data.recipes)
         return response.data.recipes;
     }
 )
@@ -24,7 +25,7 @@ export const getRecipeDetails = createAsyncThunk(
     'app/getRecipeDetails',
     async (id) => {
         const response = await axios.get(
-            `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+            `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${API_KEY}`
         );
         return response.data;
     }
@@ -34,7 +35,7 @@ export const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        
+
     },
     extraReducers: (builder) => {
         builder.addCase(getFoods.pending, (state) => {
@@ -47,7 +48,7 @@ export const appSlice = createSlice({
         builder.addCase(getFoods.rejected, (state) => {
             state.loading = false;
         })
-        
+
         // Recipe Details
         builder.addCase(getRecipeDetails.pending, (state) => {
             state.recipeLoading = true;
@@ -62,5 +63,5 @@ export const appSlice = createSlice({
     },
 })
 
-export const {} = appSlice.actions
+export const { } = appSlice.actions
 export default appSlice.reducer

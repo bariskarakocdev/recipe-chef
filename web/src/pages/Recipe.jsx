@@ -35,20 +35,30 @@ function Recipe() {
   const isFavorite = favorites.some((fav) => fav.id === currentRecipe.id);
 
   const handleToggleFavorite = () => {
-      if (!user) {
-          toast.warning("Favorilere eklemek veya çıkarmak için giriş yapmalısınız!");
-          return;
-      }
-      dispatch(toggleFavorite({ 
-          recipe: currentRecipe, 
-          userId: user.uid, 
-          isAdding: !isFavorite 
-      }));
+    if (!user) {
+      toast.warning("Favorilere eklemek veya çıkarmak için giriş yapmalısınız!");
+      return;
+    }
+    dispatch(toggleFavorite({
+      recipe: currentRecipe,
+      userId: user.uid,
+      isAdding: !isFavorite
+    }));
   };
+
+  // Besin değerlerini ayıklama
+  let calories, protein, fat, carbs;
+  if (currentRecipe?.nutrition?.nutrients) {
+    const nutrients = currentRecipe.nutrition.nutrients;
+    calories = nutrients.find(n => n.name === "Calories");
+    protein = nutrients.find(n => n.name === "Protein");
+    fat = nutrients.find(n => n.name === "Fat");
+    carbs = nutrients.find(n => n.name === "Carbohydrates");
+  }
 
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem' }}>
-      
+
       {/* ÜST KISIM: KAHRAMAN ALANI (Hero Section) */}
       <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 4, boxShadow: 3 }}>
         <CardMedia
@@ -61,33 +71,45 @@ function Recipe() {
           <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
             {currentRecipe.title}
           </Typography>
-          
+
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
             <Chip label={`${currentRecipe.readyInMinutes} Dakika`} color="primary" variant="outlined" />
             <Chip label={`${currentRecipe.servings} Porsiyon`} color="secondary" variant="outlined" />
             {currentRecipe.healthScore && <Chip label={`Sağlık Puanı: ${currentRecipe.healthScore}`} color="success" variant="outlined" />}
           </Box>
 
-          <Typography variant="body1" color="text.secondary" paragraph>
+          {/* Besin Değerleri (Eğer varsa) */}
+          {(calories || protein || fat || carbs) && (
+            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 3, p: 2, bgcolor: '#f5f5f5', borderRadius: 2 }}>
+              <Typography variant="subtitle2" sx={{ width: '100%', mb: 0.5, color: 'text.secondary' }}>Besin Değerleri (Porsiyon Başına)</Typography>
+              {calories && <Typography variant="body2" fontWeight="bold">🔥 Kalori: {calories.amount} {calories.unit}</Typography>}
+              {protein && <Typography variant="body2" fontWeight="bold">🥩 Protein: {protein.amount} {protein.unit}</Typography>}
+              {carbs && <Typography variant="body2" fontWeight="bold">🍞 Karbonhidrat: {carbs.amount} {carbs.unit}</Typography>}
+              {fat && <Typography variant="body2" fontWeight="bold">🥑 Yağ: {fat.amount} {fat.unit}</Typography>}
+            </Box>
+          )}
+
+          <Typography variant="body1" color="text.secondary">
             <span dangerouslySetInnerHTML={{ __html: currentRecipe.summary?.substring(0, 300) + "..." }}></span>
           </Typography>
 
           <Box sx={{ mt: 'auto' }}>
-            <Button 
-                variant="contained" 
-                color="error" 
-                startIcon={isFavorite ? <FaBookmark /> : <CiBookmark />} 
-                onClick={handleToggleFavorite}
+            <Button
+              variant="contained"
+              color="error"
+              startIcon={isFavorite ? <FaBookmark /> : <CiBookmark />}
+              onClick={handleToggleFavorite}
             >
-                {isFavorite ? "Favorilerden Çıkar" : "Favorilere Ekle"}
+              {isFavorite ? "Favorilerden Çıkar" : "Favorilere Ekle"}
             </Button>
+
           </Box>
         </CardContent>
       </Card>
 
       {/* ALT KISIM: DETAYLAR (İçindekiler ve Yapılışı) */}
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
-        
+
         {/* Sol Sütun: Malzemeler */}
         <Box sx={{ flex: 1 }}>
           <Typography variant="h5" gutterBottom fontWeight="bold" color="primary">
