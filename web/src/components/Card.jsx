@@ -48,24 +48,24 @@ function RecipeCard(props) {
 
     return (
         <div className='card'>
-            <MuiCard sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <MuiCard sx={{ maxWidth: 500, height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardMedia
-                    sx={{ height: 140 }}
+                    sx={{ height: 250 }} // Increased image height a bit too for better proportion
                     image={image || 'https://via.placeholder.com/345x140'} // Resim yoksa placeholder
                     title={title}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="div" noWrap title={title}>
+                    <Typography gutterBottom variant="h5" component="div" noWrap title={title} sx={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
                         {title}
                     </Typography>
                     
-                    {/* İçindekiler Etiketleri (Chips) - En fazla 2 satır görünecek şekilde sınırlandırıldı */}
+                    {/* İçindekiler Etiketleri (Chips) */}
                     <Box sx={{ 
                         display: 'flex', 
                         flexWrap: 'wrap', 
-                        gap: 0.5, 
-                        mt: 1, 
-                        maxHeight: '52px', // 2 satır chip yüksekliği (24px chip + 4px boşluk + 24px chip)
+                        gap: 0.8, 
+                        mt: 1.5, 
+                        maxHeight: '72px', // Adjusted for slightly larger chips
                         overflow: 'hidden' 
                     }}>
                         {extendedIngredients && extendedIngredients.length > 0 ? (
@@ -73,30 +73,25 @@ function RecipeCard(props) {
                                 <Chip 
                                     key={index} 
                                     label={ingredient.name} 
-                                    size="small" 
+                                    size="medium" 
                                     variant="outlined" 
-                                    sx={{ borderRadius: '4px' }} // Dikdörtgen görünüm için
+                                    sx={{ borderRadius: '6px', fontSize: '1.2rem', padding: '10px 4px' }} 
                                 />
                             ))
                         ) : (
-                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                            <Typography variant="body1" sx={{ color: 'text.secondary', fontSize: '1.2rem' }}>
                                 İçindekiler bilgisi yok.
                             </Typography>
                         )}
                     </Box>
-                    
-                    {/* Fiyat bilgisi istenirse buraya eklenebilir */}
-                    {pricePerServing && (
-                        <Typography variant="subtitle1" sx={{ display: 'block', mt: 3, color: 'success.main', fontWeight: 'bold' }}>
-                            Porsiyon Başına: ${(pricePerServing / 100).toFixed(2)}
-                        </Typography>
-                    )}
                 </CardContent>
-                <CardActions>
-                    <Button size="small" onClick={() => navigate('/tarif/' + id)}>Detayları Gör</Button>
-                    <Button size="small" color="error" onClick={handleToggleFavorite}>
+                <CardActions sx={{ padding: '16px' }}>
+                    <Button size="large" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }} onClick={() => navigate('/tarif/' + id)}>
+                        Detayları Gör
+                    </Button>
+                    <Button size="large" color="error" sx={{ ml: 'auto' }} onClick={handleToggleFavorite}>
                         {isFavorite ?
-                            <FaBookmark fontSize={20} /> : <CiBookmark fontSize={20} />}
+                            <FaBookmark fontSize={28} /> : <CiBookmark fontSize={28} />}
                     </Button>
                 </CardActions>
             </MuiCard>

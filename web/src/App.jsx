@@ -48,10 +48,13 @@ function App() {
 
  
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <ToastContainer/>
       <Header />
-      <RouterConfig />
+      
+      <div style={{ flexGrow: 1 }}>
+        <RouterConfig />
+      </div>
        
        {/* Yükleme durumu varsa (sayfanın neresinde olursa olsun) ortada bir spinner göster */}
        {(loading || recipeLoading) && (
@@ -60,8 +63,10 @@ function App() {
         </div>
        )}
       
-      <Footer/>
-    </>
+      <div style={{ backgroundColor: "gray", marginTop: "auto" }}>
+        <Footer/>
+      </div>
+    </div>
   )
 }
 
