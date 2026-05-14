@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Grid, CircularProgress, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Box, Button, CircularProgress, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { searchFoodsByCategory } from '../../store/slices/AppSlice';
-import RecipeCard from '../Card';
+import RecipeGrid from '../RecipeGrid';
 
 const categories = [
     { value: 'main course', label: 'Ana Yemek' },
@@ -78,13 +78,9 @@ function SearchByCategory() {
                     <CircularProgress />
                 </Box>
             ) : (
-                <Grid container spacing={4} sx={{ mt: 2, px: { xs: 2, md: 4 } }}>
+                <>
                     {hasSearched && searchedFoodsByCategory && searchedFoodsByCategory.length > 0 ? (
-                        searchedFoodsByCategory.map((recipe) => (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={recipe.id} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <RecipeCard props={recipe} />
-                            </Grid>
-                        ))
+                        <RecipeGrid recipes={searchedFoodsByCategory} />
                     ) : (
                         hasSearched && searchedFoodsByCategory && searchedFoodsByCategory.length === 0 && (
                             <Typography sx={{ width: '100%', textAlign: 'center', mt: 4, color: 'text.secondary', fontSize: '1.2rem' }}>
@@ -98,7 +94,7 @@ function SearchByCategory() {
                             Arama yapmak için yukarıdaki menüden bir kategori seçin.
                         </Typography>
                     )}
-                </Grid>
+                </>
             )}
         </Box>
     );

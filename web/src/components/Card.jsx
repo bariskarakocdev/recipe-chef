@@ -47,8 +47,8 @@ function RecipeCard(props) {
     };
 
     return (
-        <div className='card'>
-            <MuiCard sx={{ maxWidth: 500, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div className='card' style={{ width: '100%' }}>
+            <MuiCard sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardMedia
                     sx={{ height: 250 }} // Increased image height a bit too for better proportion
                     image={image || 'https://via.placeholder.com/345x140'} // Resim yoksa placeholder

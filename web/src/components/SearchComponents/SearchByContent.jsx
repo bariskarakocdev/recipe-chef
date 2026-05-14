@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, TextField, Button, Grid, CircularProgress, Typography, InputAdornment, Autocomplete } from '@mui/material';
+import { Box, TextField, Button, CircularProgress, Typography, InputAdornment, Autocomplete } from '@mui/material';
 import { IoIosSearch } from "react-icons/io";
 import { searchFoodsByContent } from '../../store/slices/AppSlice';
-import RecipeCard from '../Card';
+import RecipeGrid from '../RecipeGrid';
 import axios from 'axios';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -121,13 +121,9 @@ function SearchByContent() {
                     <CircularProgress />
                 </Box>
             ) : (
-                <Grid container spacing={4} sx={{ mt: 2, px: { xs: 2, md: 4 } }}>
+                <>
                     {hasSearched && searchedFoodsByContent && searchedFoodsByContent.length > 0 ? (
-                        searchedFoodsByContent.map((recipe) => (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={recipe.id} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <RecipeCard props={recipe} />
-                            </Grid>
-                        ))
+                        <RecipeGrid recipes={searchedFoodsByContent} />
                     ) : (
                         hasSearched && searchedFoodsByContent && searchedFoodsByContent.length === 0 && (
                             <Typography sx={{ width: '100%', textAlign: 'center', mt: 4, color: 'text.secondary', fontSize: '1.2rem' }}>
@@ -141,7 +137,7 @@ function SearchByContent() {
                             Arama yapmak için yukarıdaki alana elinizdeki malzemeleri girin.
                         </Typography>
                     )}
-                </Grid>
+                </>
             )}
         </Box>
     );
