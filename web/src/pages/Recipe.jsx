@@ -93,7 +93,7 @@ function Recipe() {
             <span dangerouslySetInnerHTML={{ __html: currentRecipe.summary?.substring(0, 300) + "..." }}></span>
           </Typography>
 
-          <Box sx={{ mt: 'auto' }}>
+          <Box sx={{ mt: '10px' }}>
             <Button
               variant="contained"
               color="error"
