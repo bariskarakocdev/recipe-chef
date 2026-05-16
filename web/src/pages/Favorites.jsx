@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import RecipeCard from '../components/Card'
-
+import RecipeGrid from '../components/RecipeGrid'
 function Favorites() {
   const favorites = useSelector((state) => state.favorite.favorites)
   const user = useSelector((state) => state.auth.user)
@@ -23,11 +22,7 @@ function Favorites() {
       )}
 
       {user && favorites.length > 0 && (
-        <div className="recipes-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', marginTop: '2rem' }}>
-          {favorites.map((recipe) => (
-            <RecipeCard key={recipe.id} props={recipe} />
-          ))}
-        </div>
+       <RecipeGrid recipes={favorites}/>
       )}
     </div>
   )

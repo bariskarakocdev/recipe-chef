@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { FaArrowLeft } from "react-icons/fa6";
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecipeDetails } from '../store/slices/AppSlice';
-import { CircularProgress, Box, Typography, Card, CardMedia, CardContent, Divider, Chip, List, ListItem, ListItemText, Checkbox, ListItemIcon, Tooltip } from '@mui/material';
+import { Box, Typography, Card, CardMedia, CardContent, Divider, Chip, List, ListItem, ListItemText, Checkbox, ListItemIcon, Tooltip } from '@mui/material';
 
 // Kalp butonu icin
 import { toggleFavorite } from '../store/slices/FavoriteSlice';
@@ -13,6 +14,7 @@ import Button from '@mui/material/Button';
 
 function Recipe() {
   const { id } = useParams();
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const { currentRecipe, recipeLoading } = useSelector((state) => state.app);
@@ -27,7 +29,6 @@ function Recipe() {
   if (recipeLoading || !currentRecipe) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
-        <CircularProgress />
       </Box>
     );
   }
@@ -56,7 +57,7 @@ function Recipe() {
     carbs = nutrients.find(n => n.name === "Carbohydrates");
     sugar = nutrients.find(n => n.name === "Sugar");
   }
-
+console.log(currentRecipe.healthScore)
   // Günlük önerilen değerler (gram cinsinden) — yüzde hesaplama için
   const dailyValues = {
     protein: 50,
@@ -75,7 +76,9 @@ function Recipe() {
 
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem' }}>
-
+      <button onClick={() => navigate(-1)} style={{padding:"5px 10px", marginBottom:"10px",backgroundColor:'orange',color:'white',border:'none',borderRadius:'5px', display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center", gap:"3px"}}>
+      <FaArrowLeft />Geri Dön
+    </button>
       {/* ÜST KISIM: KAHRAMAN ALANI (Hero Section) */}
       <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 4, boxShadow: 3 }}>
         <CardMedia
@@ -92,7 +95,7 @@ function Recipe() {
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
             <Chip label={`${currentRecipe.readyInMinutes} Dakika`} color="primary" variant="outlined" />
             <Chip label={`${currentRecipe.servings} Porsiyon`} color="secondary" variant="outlined" />
-            {currentRecipe.healthScore && <Chip label={`Sağlık Puanı: ${currentRecipe.healthScore}`} color="success" variant="outlined" />}
+            {currentRecipe.healthScore ? (<Chip label={`Sağlık Puanı: ${currentRecipe.healthScore}`} color="success" variant="outlined" />) : (<Chip label={`Sağlık Puanı: Belirtilmemiş`} color="success" variant="outlined" />)}
           </Box>
 
           {/* Besin Değerleri — Tek Kalın Stacked Bar */}

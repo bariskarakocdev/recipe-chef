@@ -40,19 +40,33 @@ export const searchFoodsByName = createAsyncThunk(
     'app/searchFoodsByName',
     async (query) => {
         const response = await axios.get(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeInformation=true&number=12&apiKey=${API_KEY}`
-        )
-        return response.data.results;
+            `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=12&apiKey=${API_KEY}`
+        );
+        const recipeIds = response.data.results.map(r => r.id).join(',');
+        if (!recipeIds) return [];
+        const infoResponse = await axios.get(
+            `https://api.spoonacular.com/recipes/informationBulk?ids=${recipeIds}&apiKey=${API_KEY}`
+        );
+        return infoResponse.data;
     }
 )
 
 export const searchFoodsByContent = createAsyncThunk(
     'app/searchFoodsByContent',
     async (ingredients) => {
-        const response = await axios.get(
-            `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}&addRecipeInformation=true&number=12&apiKey=${API_KEY}`
-        )
-        return response.data.results;
+        // 1) İçeriklere göre tarif ID'lerini bul
+        const searchResponse = await axios.get(
+            `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&number=12&apiKey=${API_KEY}`
+        );
+        const recipeIds = searchResponse.data.map(r => r.id).join(',');
+
+        if (!recipeIds) return [];
+
+        // 2) Bu ID'lerin detaylı bilgilerini (extendedIngredients dahil) çek
+        const infoResponse = await axios.get(
+            `https://api.spoonacular.com/recipes/informationBulk?ids=${recipeIds}&apiKey=${API_KEY}`
+        );
+        return infoResponse.data;
     }
 )
 
@@ -60,9 +74,14 @@ export const searchFoodsByCategory = createAsyncThunk(
     'app/searchFoodsByCategory',
     async (category) => {
         const response = await axios.get(
-            `https://api.spoonacular.com/recipes/complexSearch?type=${category}&addRecipeInformation=true&number=12&apiKey=${API_KEY}`
-        )
-        return response.data.results;
+            `https://api.spoonacular.com/recipes/complexSearch?type=${category}&number=12&apiKey=${API_KEY}`
+        );
+        const recipeIds = response.data.results.map(r => r.id).join(',');
+        if (!recipeIds) return [];
+        const infoResponse = await axios.get(
+            `https://api.spoonacular.com/recipes/informationBulk?ids=${recipeIds}&apiKey=${API_KEY}`
+        );
+        return infoResponse.data;
     }
 )
 

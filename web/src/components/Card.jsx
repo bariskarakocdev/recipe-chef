@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 function RecipeCard(props) {
     // SearchRecipe.jsx'ten gönderilen prop yapısı: <RecipeCard props={recipe} />
     const { image, title, summary, id, extendedIngredients, pricePerServing } = props.props;
+    const searchedIngredients = props.searchedIngredients; // İçeriğe göre aramada gelen malzeme listesi
 
     // Redux bağlantıları
     const dispatch = useDispatch();
@@ -29,6 +30,26 @@ function RecipeCard(props) {
     // Bu yemeğin favorilerde olup olmadığını Redux'tan (hafızadan) kontrol et
     // Eğer listemizde bu id'ye sahip bir yemek varsa true, yoksa false döner.
     const isFavorite = favorites.some((fav) => fav.id === id);
+
+    // Bir malzemenin kullanıcının aradığı listede olup olmadığını kontrol et
+    const isIngredientMatched = (ingredientName) => {
+        if (!searchedIngredients || searchedIngredients.length === 0) return null; // renklendirme yok
+        const name = ingredientName.toLowerCase();
+        return searchedIngredients.some(searched => 
+            name.includes(searched) || searched.includes(name)
+        );
+    };
+
+    // Chip renk stili belirle
+    const getChipSx = (ingredientName) => {
+        const matched = isIngredientMatched(ingredientName);
+        const baseSx = { borderRadius: '6px', fontSize: '1.2rem', padding: '10px 4px' };
+        if (matched === null) return baseSx; // searchedIngredients yoksa normal stil
+        if (matched) {
+            return { ...baseSx, backgroundColor: '#e8f5e9', color: '#2e7d32', borderColor: '#4caf50', fontWeight: 600 };
+        }
+        return { ...baseSx, backgroundColor: '#ffebee', color: '#c62828', borderColor: '#ef5350', fontWeight: 500 };
+    };
 
     // Kalbe tıklandığında çalışacak fonksiyon
     const handleToggleFavorite = () => {
@@ -75,7 +96,7 @@ function RecipeCard(props) {
                                     label={ingredient.name} 
                                     size="medium" 
                                     variant="outlined" 
-                                    sx={{ borderRadius: '6px', fontSize: '1.2rem', padding: '10px 4px' }} 
+                                    sx={getChipSx(ingredient.name)} 
                                 />
                             ))
                         ) : (

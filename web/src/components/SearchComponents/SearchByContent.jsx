@@ -123,7 +123,7 @@ function SearchByContent() {
             ) : (
                 <>
                     {hasSearched && searchedFoodsByContent && searchedFoodsByContent.length > 0 ? (
-                        <RecipeGrid recipes={searchedFoodsByContent} />
+                        <RecipeGrid recipes={searchedFoodsByContent} searchedIngredients={selectedIngredients.map(i => typeof i === 'string' ? i.trim().toLowerCase() : i.name.toLowerCase())} />
                     ) : (
                         hasSearched && searchedFoodsByContent && searchedFoodsByContent.length === 0 && (
                             <Typography sx={{ width: '100%', textAlign: 'center', mt: 4, color: 'text.secondary', fontSize: '1.2rem' }}>
