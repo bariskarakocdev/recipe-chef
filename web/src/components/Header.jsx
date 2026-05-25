@@ -16,8 +16,8 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin, setUser } from '../store/slices/AuthSlice';
 import { clearFavorites } from '../store/slices/FavoriteSlice';
-
-
+import { LuUser } from "react-icons/lu";
+import { LuLogOut, LuLogIn } from "react-icons/lu";
 function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,7 +39,7 @@ function Header() {
     const signOutApp = async () => {
         try {
             if (user == null) {
-                toast.warning("Giriş sayfasına yönledndiriliyorsunuz.")
+                toast.warning("Giriş sayfasına yönlendiriliyorsunuz.")
                 handleClose();
                 navigate("/giris-yap");
             } else {
@@ -113,9 +113,9 @@ function Header() {
                         },
                     }}
                 >
-                    <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={signOutApp}>{user==null ? "Giriş yap" : "çıkış yap"}</MenuItem>
+                    <MenuItem sx={{ fontSize: 14, fontWeight: "500",display:"flex",alignItems:"center" }} onClick={signOutApp}>{user==null ? <><LuLogIn size={16} style={{marginRight: "7px"}}/>Giriş yap</> : <><LuLogOut size={16} style={{marginRight: "7px"}}/>Çıkış yap</> }</MenuItem>
 
-                    {user!=null && <MenuItem sx={{ fontSize: 14, fontWeight: "500" }} onClick={() => { handleClose(); navigate("/bilgilerim") }}>Bilgilerim</MenuItem>}
+                    {user!=null && <MenuItem sx={{ fontSize: 14, fontWeight: "500",display:"flex",alignItems:"center" }} onClick={() => { handleClose(); navigate("/bilgilerim") }}><LuUser size={16} style={{marginRight: "7px"}}/>Bilgilerim</MenuItem>}
                 </Menu>
                 <span className="bars-toggle">
                     {!isBarsOpen ?

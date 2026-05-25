@@ -49,7 +49,7 @@ function App() {
  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <ToastContainer/>
+      <ToastContainer position='bottom-right' autoClose={1500} />
       <Header />
       
       <div style={{ flexGrow: 1 }}>

@@ -35,7 +35,7 @@ function RecipeCard(props) {
     const isIngredientMatched = (ingredientName) => {
         if (!searchedIngredients || searchedIngredients.length === 0) return null; // renklendirme yok
         const name = ingredientName.toLowerCase();
-        return searchedIngredients.some(searched => 
+        return searchedIngredients.some(searched =>
             name.includes(searched) || searched.includes(name)
         );
     };
@@ -71,32 +71,39 @@ function RecipeCard(props) {
         <div className='card' style={{ width: '100%' }}>
             <MuiCard sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardMedia
-                    sx={{ height: 250 }} // Increased image height a bit too for better proportion
+                    sx={{
+                        overflow: "hidden",
+                        height: 250, cursor: "pointer", '&:hover': {
+                           transform:"scale(1.1)",
+                            cursor: 'pointer', // Optional: changes cursor to hand
+                        }, transition: "transform 0.3s ease-in-out"
+                    }} // Increased image height a bit too for better proportion
                     image={image || 'https://via.placeholder.com/345x140'} // Resim yoksa placeholder
                     title={title}
+
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="div" noWrap title={title} sx={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
                         {title}
                     </Typography>
-                    
+
                     {/* İçindekiler Etiketleri (Chips) */}
-                    <Box sx={{ 
-                        display: 'flex', 
-                        flexWrap: 'wrap', 
-                        gap: 0.8, 
-                        mt: 1.5, 
+                    <Box sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: 0.8,
+                        mt: 1.5,
                         maxHeight: '72px', // Adjusted for slightly larger chips
-                        overflow: 'hidden' 
+                        overflow: 'hidden'
                     }}>
                         {extendedIngredients && extendedIngredients.length > 0 ? (
                             extendedIngredients.map((ingredient, index) => (
-                                <Chip 
-                                    key={index} 
-                                    label={ingredient.name} 
-                                    size="medium" 
-                                    variant="outlined" 
-                                    sx={getChipSx(ingredient.name)} 
+                                <Chip
+                                    key={index}
+                                    label={ingredient.name}
+                                    size="medium"
+                                    variant="outlined"
+                                    sx={getChipSx(ingredient.name)}
                                 />
                             ))
                         ) : (

@@ -29,8 +29,6 @@ function Auth() {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       const user = response.user;
-      console.log(user);
-      console.log("kullanıcı oluştu.")
       toast.success("Başarıyla kayıt edildi");
       removeInput();
 
