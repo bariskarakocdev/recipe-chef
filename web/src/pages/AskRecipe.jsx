@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { searchRecipes, getRecipeDetail, resetChat } from "../api/RecipeApi";
-
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 export default function RecipeBot() {
   const [messages, setMessages] = useState([
     { from: "bot", text: "👋 Merhaba! Malzeme yaz, tarif önereyim." }
   ]);
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -55,6 +57,9 @@ export default function RecipeBot() {
 
   return (
     <div style={styles.container}>
+     <button onClick={() => navigate(-1)} style={{position:"fixed", top:"9rem", left:"20px",padding:"5px 10px", marginBottom:"10px",backgroundColor:'orange',color:'white',border:'none',borderRadius:'5px', display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center", gap:"3px", zIndex:"1000"}}>
+          <FaArrowLeft />Geri Dön
+        </button>
       <h2 style={styles.title}>🍳 Tarif Botu</h2>
 
       {/* Mesajlar */}
