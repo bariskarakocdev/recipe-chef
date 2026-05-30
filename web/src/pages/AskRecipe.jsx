@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { searchRecipes, getRecipeDetail, resetChat } from "../api/RecipeApi";
+import { searchRecipes, getRecipeDetail, resetChat } from "../api/recipeApi";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 export default function RecipeBot() {

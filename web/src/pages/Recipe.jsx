@@ -57,7 +57,6 @@ function Recipe() {
     carbs = nutrients.find(n => n.name === "Carbohydrates");
     sugar = nutrients.find(n => n.name === "Sugar");
   }
-console.log(currentRecipe.healthScore)
   // Günlük önerilen değerler (gram cinsinden) — yüzde hesaplama için
   const dailyValues = {
     protein: 50,
