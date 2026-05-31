@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import logo from '../assets/logo2.png'
+import logo from '../assets/RecipeChef.png'
 import '../css/Header.css'
 import Avatar from '@mui/material/Avatar';
 import { deepOrange } from '@mui/material/colors';
