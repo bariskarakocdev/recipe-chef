@@ -26,7 +26,6 @@ RecipeChef, mutfaktaki karar verme sürecini hızlandırmak ve sağlıklı besle
 - **[Muhammed Kadir Bük]** - AI Developer [@kadiri6506](https://github.com/muhammedkadirbuk)
 - **[Selim Anafıev]** - Mobile Developer [@caawq](https://github.com/caawq)
 
-
 ## 📂 Proje Yapısı
 
 ├── web/            # React tabanlı web uygulaması.
